@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -7,8 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
+
 
 
 public class Game extends JFrame {
@@ -18,18 +24,30 @@ public class Game extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	static class npp  implements ActionListener{
+		
+		public void actionPerformed(ActionEvent e) {
+					//刷新  
+					
+			}	
+		}
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Game frame = new Game();
 					frame.setTitle("趣味四子棋");
 					frame.setVisible(true);
+					JLabel ppp=new JLabel("開始吧");
+					//事件
+					//ppp.addActionListener(new npp());//註冊事件傾聽者
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+
 	}
 
 	/**
@@ -61,7 +79,10 @@ public class Game extends JFrame {
 		/**/
 		
 	}
+	
+	
 }
+
 /**********/
 class ImagePanel extends JPanel {
 	
