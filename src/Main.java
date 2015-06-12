@@ -20,6 +20,7 @@ public class Main extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,6 +84,7 @@ public class Main extends JFrame {
 				Game gm = new Game();
 				gm.main(null);
 				contentPane.setVisible(false);
+				
 			}
 			
  		}

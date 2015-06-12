@@ -25,7 +25,7 @@ public class Play extends Frame{
 	static int logx []=new int [50];
 	static int logy []=new int [50];
 	static int rounds=0;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException  {
 		//建立GUI
 		
 		/*視窗上按鈕*/
@@ -75,7 +75,16 @@ public class Play extends Frame{
 		fr.add(b3);
 		//EVENT
 		PRound.addActionListener(new Round());//註冊事件傾聽者
-
+		
+	
+			/*Thread.sleep(10000);
+			End GameOver=new End();
+			GameOver.main(null);
+			fr.setVisible(false);*/
+		
+			// TODO Auto-generated catch block
+		
+		
 	}
 	static class Round extends Frame implements ActionListener{
 		
