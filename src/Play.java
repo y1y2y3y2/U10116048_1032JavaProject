@@ -20,6 +20,11 @@ public class Play extends Frame{
 	static TextField inY =new TextField("y");
 	static Button PRound = new Button("下棋");
 	static Frame fr =new  Frame();
+	static String[] chess = new String[16];//紀錄棋子
+	static String[] symbol = {"●","○"};
+	static int logx []=new int [50];
+	static int logy []=new int [50];
+	static int rounds=0;
 	public static void main(String[] args) {
 		//建立GUI
 		
@@ -77,69 +82,76 @@ public class Play extends Frame{
 		public void actionPerformed(ActionEvent arg0) {
 			int l0=280,l1=240,l2=180,l3=120;
 			int v0=140,v1=180,v2=240,v3=300;
-			int rounds=0;
-			//範圍X:20到380,Y:100~350
+			rounds++;
 			ComputerPlayer cp =new ComputerPlayer();
 			//取得座標
 			int x=Integer.parseInt(inX.getText());
 			int y=Integer.parseInt(inY.getText());
+
+			/******/
 			Label WPoint =new Label("○");
-			
+			int number = (x)*1+(y)*3;//公式
+			chess[number] = "○";//放進去陣列
+			/**/
+							
+		
 			//check Correct Bounds
-			switch(x){
+			
+				switch(x){
+					case 0:
+						x=v0;
+						break;
+					case 1:
+						x=v1;
+						break;
+					case 2:
+						x=v2;
+						break;
+					case 3:
+						x=v3;
+						break;
+				}
+				switch(y){
 				case 0:
-					x=v0;
+					y=l0;
 					break;
 				case 1:
-					x=v1;
+					y=l1;
 					break;
 				case 2:
-					x=v2;
+					y=l2;
 					break;
 				case 3:
-					x=v3;
+					y=l3;
 					break;
 			}
-			switch(y){
-			case 0:
-				y=l0;
-				break;
-			case 1:
-				y=l1;
-				break;
-			case 2:
-				y=l2;
-				break;
-			case 3:
-				y=l3;
-				break;
-		}
+				
+			//印出
+			WPoint.setBounds(x,y,20,20);
 			
-		//印出
-		WPoint.setBounds(x,y,80,20);
-		fr.add(WPoint);
-		//換電腦玩
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			cp.Cplay();
-		}
+			fr.add(WPoint);
+			//換電腦玩
+			/*try {
+				Thread.sleep(1200);//模擬思考時間
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+				cp.Cplay(number);
+				
+	
+			
+
 		
 			
-			
-			
-			
+		
 		}
-		
-		
+	
 	}
 
 }
 class ComputerPlayer extends Play{
-public void	Cplay(){
+public void	Cplay(int preNum){
 	 int clogX []=new int [50];//紀錄電腦玩的X座標
 	 int clogY []=new int [50];//紀錄電腦玩的Y座標
 		Label BPoint =new Label("●");
@@ -147,7 +159,15 @@ public void	Cplay(){
 		int v0=140,v1=180,v2=240,v3=300;
 		int x=(int)( Math.random()*4);
 		int y=(int)( Math.random()*4);
-		System.out.println(x+" "+y);
+		int number = (x)*1+(y)*3;//公式
+		while(preNum==number){
+			x=(int)( Math.random()*4);
+			y=(int)( Math.random()*4);
+			number = (x)*1+(y)*3;
+			
+		}
+		
+		chess[number] = "●";//放進去陣列
 		switch(x){
 		case 0:
 			x=v0;
@@ -181,8 +201,7 @@ public void	Cplay(){
 		
 		BPoint.setBounds(x,y,80,20);
 		fr.add(BPoint);
-		//call檢查輸贏
-		//checkWin(clogX[],clogY[]);
+		
 	}
 
 }
